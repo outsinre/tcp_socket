@@ -22,10 +22,10 @@ import socket
 def main():
     """Main entrance of the TCP server module."""
 
-    server_host, server_port = '', 12345
+    server_address = ('', 12345)
 
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as server_socket:
-        server_socket.bind((server_host, server_port))
+        server_socket.bind(server_address)
         server_socket.settimeout(5*60)
         server_socket.listen(1)
 
