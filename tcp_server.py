@@ -20,7 +20,8 @@ import sys
 import socket
 
 def main():
-    """Main entrance of this module."""
+    """Main entrance of the TCP server module."""
+
     server_host, server_port = '', 12345
 
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as server_socket:
@@ -38,10 +39,11 @@ def main():
                 if not client_message:
                     print("Received nothing from the client. Continue ...")
                     continue
-                print("{}\n{} {}".format("Client message received.", "Client message:", client_message))
+                print("Message received:", client_message)
 
-                client_message_upper = client_message.upper()
-                connection_socket.sendall(client_message_upper.encode())
+                upper_message = client_message.upper()
+                connection_socket.sendall(upper_message.encode())
+                print("Message sent:", upper_message)
                 
 if __name__ == "__main__":
     sys.exit(main())

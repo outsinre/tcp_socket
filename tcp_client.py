@@ -21,21 +21,24 @@ import socket
 
 def main():
     """Main entrance of the TCP client module."""
+
     server_host, server_port = "192.168.56.105", 12345
 
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as client_socket:
-        client_socket.settimeout(5)
-        client_socket.connect((server_host, server_port))
-
         user_input = input('Input lower-case sentence: ')
+
+        client_socket.settimeout(5)
+        server_address = ((server_host, server_port))
+        client_socket.connect(server_address)
+        print("Connected to: ", server_address)
+
         client_socket.sendall(user_input.encode())
+        print("Message sent:", user_input)
 
         server_data = client_socket.recv(2048)
         if not server_data:
             raise socket.error("Receive nothing from the server.")
-        print("Server message received.")
-
-    print("Server message:", server_data.decode())
+        print("Message received:", server_data.decode())
 
 if __name__ == "__main__":
     sys.exit(main())
