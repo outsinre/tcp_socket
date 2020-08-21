@@ -26,7 +26,7 @@ def main():
 
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as server_socket:
         server_socket.bind(server_address)
-        server_socket.settimeout(5*60)
+        server_socket.settimeout(5*60) # Set before listen()
         server_socket.listen(1)
 
         print("The server is ready to receive segments.")

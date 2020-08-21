@@ -27,7 +27,7 @@ def main():
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as client_socket:
         user_input = input('Input lower-case sentence: ')
 
-        client_socket.settimeout(5)
+        client_socket.settimeout(5) # Set before connect()
         client_socket.connect(server_address)
         print("Connected to: ", server_address)
 
