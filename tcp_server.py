@@ -32,13 +32,13 @@ def main():
         while True:
             connection_socket, client_address = server_socket.accept()
             with connection_socket:
-                print("Connected by:", client_address)
+                print("Connected from:", client_address)
 
                 client_message = connection_socket.recv(2048).decode()
                 if not client_message:
-                    print("Received nothing from the client.")
-                    raise socket.error
-                print("{}\n{} {}\n".format("Client message received.", "Client message:", client_message))
+                    print("Received nothing from the client. Continue ...")
+                    continue
+                print("{}\n{} {}".format("Client message received.", "Client message:", client_message))
 
                 client_message_upper = client_message.upper()
                 connection_socket.sendall(client_message_upper.encode())

@@ -20,7 +20,7 @@ import sys
 import socket
 
 def main():
-    """Main entrance of this module."""
+    """Main entrance of the TCP client module."""
     server_host, server_port = "192.168.56.105", 12345
 
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as client_socket:
@@ -32,8 +32,7 @@ def main():
 
         server_data = client_socket.recv(2048)
         if not server_data:
-            print("Receive nothing from the server.")
-            raise socket.error
+            raise socket.error("Receive nothing from the server.")
         print("Server message received.")
 
     print("Server message:", server_data.decode())
