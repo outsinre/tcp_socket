@@ -27,11 +27,11 @@ def main():
     with socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM) as server_socket:
         server_socket.bind(server_address)
         server_socket.settimeout(5*60) # Set before listen()
-        server_socket.listen(1)
+        server_socket.listen(1) # Three-way handshake
 
         print("The server is ready to receive segments.")
         while True:
-            connection_socket, client_address = server_socket.accept()
+            connection_socket, client_address = server_socket.accept()  # Connection established
             with connection_socket:
                 print("Connected from:", client_address)
 
